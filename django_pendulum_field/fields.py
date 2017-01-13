@@ -3,6 +3,7 @@ import datetime
 import pendulum
 from django.core import exceptions
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from pendulum import Pendulum
 from pendulum.parsing.exceptions import ParserError
@@ -31,9 +32,8 @@ class PendulumField(models.DateTimeField):
             return Pendulum.instance(value)
         if isinstance(value, datetime.date):
             return Pendulum.instance(datetime.datetime.combine(value, datetime.datetime.min.time()))
-
         try:
-            return pendulum.parse(value)
+            return pendulum.parse(value, tz=timezone.get_current_timezone())
         except ParserError:
             raise exceptions.ValidationError(
                 self.error_messages['invalid_datetime'],

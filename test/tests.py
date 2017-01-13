@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from pendulum import Pendulum
 from django.core import serializers
 from django.test import TestCase
-from django.core import serializers
+from django.utils import timezone
 
 from django_pendulum_field.forms import PendulumField as PendulumFormField
 from .forms import PersonForm
@@ -27,6 +27,22 @@ class PendulumModelFieldTests(TestCase):
         user.creation_date = Pendulum(1990, 6, 1, tzinfo='Europe/Berlin')
         user.save()
         self.assertEqual(user.creation_date, Pendulum(1990, 6, 1, tzinfo='Europe/Berlin'))
+
+    def test_parse_datetime_string(self):
+        user = User.objects.get()
+        user.creation_date = '2010-07-01'
+        user.full_clean()
+        user.save()
+        self.assertTrue(isinstance(user.creation_date, Pendulum))
+        self.assertEqual(user.creation_date, Pendulum(2010, 7, 1, tzinfo=timezone.get_current_timezone()))
+
+    def test_parse_iso8601_string(self):
+        user = User.objects.get()
+        user.creation_date = '2010-07-01T00:00:00-10:00'
+        user.full_clean()
+        user.save()
+        self.assertTrue(isinstance(user.creation_date, Pendulum))
+        self.assertEqual(user.creation_date, Pendulum(2010, 7, 1, tzinfo='US/Hawaii'))
 
     def test_auto_now_works_correctly(self):
         user = UserAutoNow(first_name='James')
