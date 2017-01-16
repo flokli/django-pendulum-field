@@ -38,8 +38,5 @@ person.first_name
 # Jacob
 ```
 
-## Forms
-TODO
-
-## Caveats
-TODO
+## Known issues
+Doesn't work with Django 1.9 (1.8 and >= 1.10 work) (see [bugreport](https://code.djangoproject.com/ticket/27544))
