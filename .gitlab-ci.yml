@@ -24,22 +24,23 @@ py36-django18:
   stage: test
   image: python:3.6
   script: tox -e py36-django18
-py27-django19:
-  stage: test
-  image: python:2.7
-  script: tox -e py27-django19
-py34-django19:
-  stage: test
-  image: python:3.4
-  script: tox -e py34-django19
-py35-django19:
-  stage: test
-  image: python:3.5
-  script: tox -e py35-django19
-py36-django19:
-  stage: test
-  image: python:3.6
-  script: tox -e py36-django19
+#commented out, see https://code.djangoproject.com/ticket/27544#comment:9
+#py27-django19:
+#  stage: test
+#  image: python:2.7
+#  script: tox -e py27-django19
+#py34-django19:
+#  stage: test
+#  image: python:3.4
+#  script: tox -e py34-django19
+#py35-django19:
+#  stage: test
+#  image: python:3.5
+#  script: tox -e py35-django19
+#py36-django19:
+#  stage: test
+#  image: python:3.6
+#  script: tox -e py36-django19
 py27-django110:
   stage: test
   image: python:2.7
