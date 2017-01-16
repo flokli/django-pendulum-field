@@ -20,6 +20,10 @@ py35-django18:
   stage: test
   image: python:3.5
   script: tox -e py35-django18
+py36-django18:
+  stage: test
+  image: python:3.6
+  script: tox -e py36-django18
 py27-django19:
   stage: test
   image: python:2.7
@@ -32,6 +36,10 @@ py35-django19:
   stage: test
   image: python:3.5
   script: tox -e py35-django19
+py36-django19:
+  stage: test
+  image: python:3.6
+  script: tox -e py36-django19
 py27-django110:
   stage: test
   image: python:2.7
@@ -44,3 +52,7 @@ py35-django110:
   stage: test
   image: python:3.5
   script: tox -e py35-django110
+py36-django110:
+  stage: test
+  image: python:3.6
+  script: tox -e py36-django110
